@@ -1,0 +1,41 @@
+.my-story-image-container{
+  width: 120px;
+  height: 150px;
+  background-color: rgb(219, 255, 255);
+  border-radius: 5px;
+  margin-right: 10px;
+}
+.mystory-image{
+   width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    justify-content: center; 
+    align-items: center; 
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
+    border: 2px dotted gold;
+}
+.mystory-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  cursor: pointer
+}
+.my-story-image-container p{
+  margin-top: 10px;
+  font-size: 20px;
+}
+.my-story-image-container a{
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+}
+.my-story-image-container a:hover{
+  color:rgb(0, 0, 253);
+}
+
+
+  
+  

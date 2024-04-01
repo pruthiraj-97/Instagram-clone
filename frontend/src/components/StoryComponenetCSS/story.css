@@ -1,0 +1,47 @@
+.story-container-user {
+  display: flex;
+  overflow-x: auto; 
+  scroll-snap-type: x mandatory; 
+  width: fit-content; 
+  width: 100%;
+  height: 120px;
+  background-color: rgb(255, 249, 241);
+  border-radius: 10px;
+}
+.story-user{
+  width: 120px;
+  height: 120px;
+}
+.story-image-container-user{
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  margin-left: 10px;
+  border: 2px dotted gold;
+  cursor: pointer;
+}
+
+.story-image-container-user img{
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+.username-user{
+  margin-top: 5px;
+  font-size: bold;
+  cursor: pointer;
+}
+.no-stories {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  margin: 0; 
+}
+
+
+
+
+
+
+
+  

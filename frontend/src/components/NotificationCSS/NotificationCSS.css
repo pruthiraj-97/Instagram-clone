@@ -1,0 +1,101 @@
+.notification-container {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    font-family: Arial, sans-serif;
+    margin-left: 35%;
+    margin-top: 50px;
+  }
+  
+  .notification-container h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: blue;
+  }
+  
+  .notification-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .notification-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: rgb(255, 244, 223);
+  }
+  
+  .user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1.5px dotted gold;
+  }
+  
+  .username {
+    font-weight: bold;
+  }
+  
+  .button-container {
+    display: flex;
+  }
+  
+  .accept-button,
+  .deny-button {
+    background-color: #3897f0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 5px;
+    margin-top: 3px;
+  }
+  
+  .accept-button:hover,
+  .deny-button:hover {
+    background-color: #3173b4;
+  }
+  .user-details{
+    text-align: center;
+  }
+  .notification-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .notification-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .user-details {
+    flex-grow: 1;
+  }
+  
+  .username {
+    font-weight: bold;
+  }
+  
+  .message {
+    margin-top: 5px;
+  }
+  
+  

@@ -1,0 +1,81 @@
+.user-profile {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.user-info {
+    flex: 1;
+    margin-right: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f3eeee;
+    text-align: center;
+    width: 500px;
+    height: 400px;
+    margin-left: 20px;
+}
+
+.user-info .avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.user-info h2 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.follow-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.follow-button:hover {
+    background-color: #0056b3;
+}
+
+.follower-info {
+    margin-top: 20px;
+}
+
+.follower-info p {
+    margin-bottom: 5px;
+}
+
+.user-posts {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(250, 238, 214);
+}
+.user-posts h3 {
+    margin-bottom: 10px;
+}
+/* CSS */
+.follower-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.follower-info a {
+    color: #000000; 
+    text-decoration: none;
+}
+.follower-info a:hover{
+    color: #007bff;
+}
+.create-reels-button{
+    margin-top: 10px;
+    color: white;
+    background-color: green;
+    margin-left: 10px;
+}
+
+
+
