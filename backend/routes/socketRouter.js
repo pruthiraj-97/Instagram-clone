@@ -22,6 +22,7 @@ io.on('connection',socket=>{
         if(!userSocketMap[newUserId]){
           userSocketMap[newUserId] = socket.id;
         }
+        console.log("userSocketMap",userSocketMap)
     })
     
     socket.on("disconnect",()=>{

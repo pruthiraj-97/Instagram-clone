@@ -1,8 +1,10 @@
 const userSchema=require('../models/user.model')
-
+const {io,isOnline}=require('../routes/socketRouter')
+const Notification=require('../models/messageNotification.model')
 exports.acceptFollowRequest=async (req,res)=>{
     try {
         const user=req.user
+        console.log(user)
         const {id}=req.params
             await userSchema.updateOne({_id:user.id},{
                 $push:{
@@ -20,17 +22,42 @@ exports.acceptFollowRequest=async (req,res)=>{
                $pull:{
                    myRequests:user.id
                }
-           }) 
-
+           })
+          
+           let notify=await Notification.create({
+              user:user.id,
+              message:`${user.name} accepted your request`,
+              type:"follow"
+           })
+        
+           notify=await Notification.findOne({_id:notify._id})
+                                                 .populate({
+                                                    path:'user',
+                                                    select:'username image'
+                                                })
+           console.log(notify)
+            if(isOnline(id)){
+                const socketid=global.userSocketMap[id]
+                console.log("socket is ",socketid)
+                io.to(socketid).emit('notification',notify)
+            }                                    
+            console.log("**")
+        const response=await userSchema.updateOne({_id:id},{
+                $push:{
+                       notification:notify._id
+                     }
+            })
+           console.log(response)
            const profile=await userSchema.findOne({_id:user.id})
            .populate({
                path:'posts'
            })
            .populate({
              path:'followRequests',
+             select:'username image'
            })
            profile.password=null
-
+          
         return res.status(200).json({
             success:true,
             message:"followed",
@@ -57,14 +84,42 @@ exports.denayFollowRequest=async (req,res)=>{
                 myRequests:user.id
             }
         })
-        const profile=await userSchema.findOne({_id:user.id})
-                                       .populate({
-                                           path:'posts'
-                                       })
-                                       .populate({
-                                         path:'followRequests',
-                                       })
-        profile.password=null
+
+        let notify=await Notification.create({
+            user:user.id,
+            message:`${user.name} denied your request`,
+            type:"follow"
+        })
+        notify=await Notification.findOne({_id:notify._id})
+        .populate({
+            path:'user',
+            select:'username image'
+        })
+        console.log(notify)
+        if(isOnline(id)){
+            const socketid=global.userSocketMap[id]
+                console.log("socket is ",socketid)
+                io.to(socketid).emit('notification',notify)
+        }
+        
+        const resp=await userSchema.updateOne({_id:id},{
+            $push:{
+                notification:notify._id
+            }
+        })
+        console.log(resp)
+
+        const profile = await userSchema.findOne({_id: user.id})
+        .populate({
+            path: 'posts'
+        })
+        .populate({
+            path: 'followRequests',
+            select: 'username image'
+        });
+    profile.password = null;
+    console.log(profile);
+    
         return res.status(200).json({
             success:true,
             message:"request denied",
@@ -263,6 +318,10 @@ exports.unfollowUser= async (req,res)=>{
            })
            .populate({
              path:'followRequests',
+           })
+           .populate({
+            path:'following',
+            select:'username image'
            })
            profile.password=null
 

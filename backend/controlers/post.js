@@ -97,10 +97,12 @@ exports.likePost=async (req,res)=>{
                                                     select:'username image'
                                                   })
             if(isOnline(post.userId._id)){
+            console.log("socket connect")
             const socketid=global.userSocketMap[post.userId._id]
             io.to(socketid).emit("newNotification",notify)
             }
-               if(notify.user._id!=user.id){
+               if(notify.user._id!=post.userId._id){
+                console.log(notify.user._id,post.userId._id)
                const temp = await userSchema.findByIdAndUpdate(post.userId._id, {
                 $push: { notification: notify._id }
             }, { new: true }); 
@@ -231,16 +233,17 @@ exports.dislikePost=async (req,res)=>{
                                                                 path:'user',
                                                                 select:'username image'
                                                               })
-                        if(isOnline(post.userId._id)){
-                        const socketid=global.userSocketMap[post.userId._id]
-                        io.to(socketid).emit("newNotification",notify)
-                        }
-                        console.log(notify.user._id,user.id)
-                        if(notify.user._id!=user.id){
-                           const temp = await userSchema.findByIdAndUpdate(post.userId._id, {
-                            $push: { notification: notify._id }
-                          }, { new: true });
-                        } 
+                                                              if(isOnline(post.userId._id)){
+                                                                const socketid=global.userSocketMap[post.userId._id]
+                                                                console.log("socket connect")
+                                                                io.to(socketid).emit("newNotification",notify)
+                                                                }
+                                                                   if(notify.user._id!=post.userId._id){
+                                                                    console.log(notify.user._id,user.id)
+                                                                   const temp = await userSchema.findByIdAndUpdate(post.userId._id, {
+                                                                    $push: { notification: notify._id }
+                                                                }, { new: true }); 
+                                                             }
                         }
 
         return res.status(200).json({
